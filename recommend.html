@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Recommendations - Book Recommendation System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Book Recommendations</h1>
+    <p>Enter your favorite genre to get suggestions:</p>
+    <form onsubmit="showRecommendations(event)">
+      <input type="text" id="genreInput" placeholder="e.g., Romance, Thriller" required><br>
+      <button type="submit">Recommend</button>
+    </form>
+    <div id="results"></div>
+    <a class="button" href="home.html">Back to Home</a>
+  </div>
+  <script>
+    function showRecommendations(event) {
+      event.preventDefault();
+      const genre = document.getElementById('genreInput').value.trim();
+      const results = document.getElementById('results');
+      // Example static recommendations
+      const recommendations = {
+        Romance: ["Pride and Prejudice", "Me Before You", "The Notebook"],
+        Thriller: ["Gone Girl", "The Girl with the Dragon Tattoo", "The Silent Patient"],
+        Fantasy: ["Harry Potter", "The Hobbit", "Mistborn"]
+      };
+      let books = recommendations[genre] || ["No recommendations found."];
+      results.innerHTML = "<h3>Recommended Books:</h3><ul>" + books.map(b => `<li>${b}</li>`).join('') + "</ul>";
+    }
+  </script>
+</body>
+</html>
